@@ -7,6 +7,8 @@ angular.module('starter.directives')
         link: function(scope, ele, attrs) {
 
             function createDiagram(diagramContent) {
+
+
                 var margin = {
                         top: 20,
                         right: 120,
@@ -33,6 +35,8 @@ angular.module('starter.directives')
                     .attr("height", height + margin.top + margin.bottom)
                     .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                console.log(svg);
 
                 d3.json("flare.json", function(error, flare) {
                     if (error) throw error;

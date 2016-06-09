@@ -7,6 +7,8 @@
   <title></title>
 
   <link href="css/angular-json-tree.css" rel="stylesheet">
+  <link href="css/angular-d3-collapsible-tree.min.css" rel="stylesheet">
+
 
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -28,11 +30,11 @@
   <script src="js/directives/dtree.js"></script>
   <script src="js/directives/diagram.js"></script>
   <script src="lib/x2js.min.js"></script>
-  <script src="lib/xml2json.min.js"></script>  
+  <script src="lib/xml2json.min.js"></script>
   <script src="lib/angular-json-tree.min.js"></script>
   <script src="lib/dtree.js"></script>
   <script src="lib/d3.v3.min.js"></script>
-
+  <script src="lib/angular-d3-collapsible-tree.min.js"></script>
 
 </head>
 
@@ -43,12 +45,14 @@
     <ion-content>
       <div class="row">
 
-        <div class="col col-25">
+        <div class="col col-10">
           <div class="card">
             <div ng-controller="DBTreeViewController">
               <div class="item item-divider">{{name}}</div>
               <div class="item item-text-wrap" style="font-size: 12px;">
                 <json-tree object="databaseTree"></json-tree>
+                <!--<div dtree="databaseTree"></div>-->
+
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <br><br><br><br><br><br><br>
@@ -58,28 +62,26 @@
           </div>
         </div>
 
-        <div class="col">
+        <div class="col col-60">
           <div class="card">
             <div ng-controller="XsdDiagramController">
               <div class="item item-divider">{{name}}</div>
               <div class="item item-text-wrap">
-
-                <!--<iframe src="tree.html" id="diagramIframe" height="720px" width="740px">
-                                        Your browser does not support iframes
-                                    </iframe>-->
-
-                <div diagram="diagramContent"></div>
+                <!--<iframe src="tree.html" id="diagramIframe" height="720px" width="740px">Your browser does not support iframes</iframe>-->
+                <!--<div diagram="diagramContent"></div>-->
+                <collapsible-tree nodes='nodes' width = '750' height = '750' radius = '490'></collapsible-tree>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col col-25">
+        <div class="col col-30">
           <div class="card">
             <div ng-controller="XsdTreeViewController">
               <div class="item item-divider">{{name}}</div>
               <div class="item item-text-wrap" style="font-size: 12px;">
                 <div dtree="dtreeContent"></div>
+                <!--<json-tree object="dtreeContent"></json-tree>-->
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>

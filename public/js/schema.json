@@ -1,0 +1,69 @@
+{
+    "name": "schema",
+    "children": [{
+        "name": "complexType",
+        "children": [{
+            "name": "0",
+            "children": [{
+                "name": "sequence",
+                "children": [{
+                    "name": "element",
+                    "children": [{
+                        "name": "BANKRUPTCIES"
+                    }, {
+                        "name": "BORROWER_DETAIL"
+                    }, {
+                        "name": "CREDIT_SCORES"
+                    }, {
+                        "name": "CURRENT_INCOME"
+                    }, {
+                        "name": "DECLARATION"
+                    }, {
+                        "name": "DEPENDENTS"
+                    }, {
+                        "name": "EMPLOYERS"
+                    }, {
+                        "name": "GOVERNMENT_BORROWER"
+                    }, {
+                        "name": "GOVERNMENT_MONITORING"
+                    }, {
+                        "name": "HARDSHIP_DECLARATION"
+                    }]
+                }]
+            }, {
+                "name": "BORROWER"
+            }]
+        }, {
+            "name": "1",
+            "children": [{
+                "name": "sequence",
+                "children": [{
+                    "name": "element",
+                    "children": [{
+                        "name": "AutomobilesOwnedCount"
+                    }, {
+                        "name": "BorrowerAgeAtApplicationYearsCount"
+                    }, {
+                        "name": "BorrowerApplicationSignedDate"
+                    }, {
+                        "name": "BorrowerBankruptcyIndicator"
+                    }, {
+                        "name": "BorrowerBirthDate"
+                    }, {
+                        "name": "BorrowerCharacteristicType"
+                    }, {
+                        "name": "BorrowerCharacteristicTypeOtherDescription"
+                    }, {
+                        "name": "BorrowerClassificationType"
+                    }, {
+                        "name": "BorrowerIsAnIndividualPersonIndicator"
+                    }, {
+                        "name": "BorrowerMailToAddressSameAsPropertyIndicator"
+                    }]
+                }]
+            }, {
+                "name": "BORROWER_DETAIL"
+            }]
+        }]
+    }]
+}

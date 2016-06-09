@@ -18,7 +18,7 @@
                         for (var key in obj) {
                             counter++;
                             if (typeof(obj[key]) == "object") {
-                                dtree.add(counter, parent, key, "#" + key);
+                                dtree.add(counter, parent, key, "#"+counter);
                                 walk(obj[key], counter)
                             } else {
                                 dtree.add(counter, parent, key + " : " + obj[key], "#");
@@ -30,9 +30,8 @@
                 }
 
                 scope.$watch(attrs.dtree, function(html) {
-                    html = createDtree(html);
+                    html = new createDtree(html);
                     ele.html(html);
-                    console.log(html);
                     $compile(ele.contents())(scope);
                 });
             }

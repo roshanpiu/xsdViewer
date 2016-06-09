@@ -1,15 +1,10 @@
-angular.module('starter', ['ionic', 'cb.x2js','starter.directives','angular-json-tree'])
+angular.module('starter', ['ionic', 'cb.x2js', 'starter.directives', 'angular-json-tree', 'renderteam.collapsibleTree'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
-            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-            // for form inputs)
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
-            // Don't remove this line unless you know what you are doing. It stops the viewport
-            // from snapping when text inputs are focused. Ionic handles this internally for
-            // a much nicer keyboard experience.
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
         }
         if (window.StatusBar) {
@@ -31,7 +26,7 @@ angular.module('starter', ['ionic', 'cb.x2js','starter.directives','angular-json
             $scope.showDBTree = true;
         }
 
-         function processJSON(data) {
+        function processJSON(data) {
             var res = {};
             for (key in data) {
                 // if (key == "complexType" || key == "sequence" || key == "schema" || key == "element" || (!isNaN(parseInt(key)))) {
@@ -59,99 +54,110 @@ angular.module('starter', ['ionic', 'cb.x2js','starter.directives','angular-json
                 //         console.log("none");
                 //     }
                 // }
-                if((!isNaN(parseInt(key)))){
+                if ((!isNaN(parseInt(key)))) {
 
-                } 
+                }
 
             }
 
             return res;
         }
 
-        console.log(data.data);
         $scope.databaseTree = data.data;
     });
 })
 
-.controller('XsdDiagramController', function($scope, $http, $compile, $rootElement) {
+.controller('XsdDiagramController', function($scope, $http, $location) {
     $scope.name = "XSD Diagram";
     $scope.diagramSrc = "";
 
-    $http.get('https://raw.githubusercontent.com/roshanpiu/seneruTest/master/sampleXsds/xmlSchema.xsd').then(function(data) {
+    $scope.$watch(function() {
+        return location.hash
+    }, function(value) {
+
+        var url = $location.url();
+        url = url.substring(1, url.length);
+
+        if ((!isNaN(parseInt(url)))) {
+            if (url == 3) {
+                console.log(url);
+                $http.get('js/nodes1.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+            else if (url == 61) {
+                console.log(url);
+                $http.get('js/nodes2.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+            else if (url == 4) {
+                console.log(url);
+                $http.get('js/sequence1.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+            else if (url == 5) {
+                console.log(url);
+                $http.get('js/element1.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+            else if (url == 63) {
+                console.log(url);
+                $http.get('js/element2.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+            else if (url == 62) {
+                console.log(url);
+                $http.get('js/sequence2.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+            else if (url == 2) {
+                console.log(url);
+                $http.get('js/complexType.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+            else{
+                $http.get('js/schema.json').then(function(data) {
+                    $scope.nodes = data.data;
+                });
+            }
+        }
+
+    });
+
+
+
+    $http.get('js/schema.json').then(function(data) {
         var xmlString = data.data;
-        
-        $scope.diagramContent = {
-            "name": "Base",
-            "children": [{
-                "name": "Type A",
-                "children": [{
-                    "name": "Section 1",
-                    "children": [{
-                        "name": "Child 1"
-                    }, {
-                        "name": "Child 2"
-                    }, {
-                        "name": "Child 3"
-                    }]
-                }, {
-                    "name": "Section 2",
-                    "children": [{
-                        "name": "Child 1"
-                    }, {
-                        "name": "Child 2"
-                    }, {
-                        "name": "Child 3"
-                    }]
-                }]
-            }, {
-                "name": "Type B",
-                "children": [{
-                    "name": "Section 1",
-                    "children": [{
-                        "name": "Child 1"
-                    }, {
-                        "name": "Child 2"
-                    }, {
-                        "name": "Child 3"
-                    }]
-                }, {
-                    "name": "Section 2",
-                    "children": [{
-                        "name": "Child 1"
-                    }, {
-                        "name": "Child 2"
-                    }, {
-                        "name": "Child 3"
-                    }]
-                }]
-            }]
-        };
+        $scope.nodes = data.data;
 
-        var req = {
-            method: 'POST',
-            url: '/getSvg',
-            headers: {
-                'Content-Type': 'application/xml'
-            },
-            data: xmlString
-        };
+        // var req = {
+        //     method: 'POST',
+        //     url: '/getSvg',
+        //     headers: {
+        //         'Content-Type': 'application/xml'
+        //     },
+        //     data: xmlString
+        // };
 
-        $http(req).then(function(res) {
-
-
-            console.log(res);
-            //document.getElementById("diagramIframe").src = 'data:image/svg+xml,' + encodeURI(res.data);;
-
-        }, function() {});
+        // $http(req).then(function(res) {
+        //     //document.getElementById("diagramIframe").src = 'data:image/svg+xml,' + encodeURI(res.data);
+        // }, function() {});
 
     });
 
 })
 
-.controller('XsdTreeViewController', function($http, $scope, x2js, $compile, $rootElement) {
+.controller('XsdTreeViewController', function($http, $scope, x2js) {
     $scope.name = "XSD Tree";
 
     $scope.showXsdTree = false;
+    $scope.dtreeContent = {};
 
     $http.get('https://raw.githubusercontent.com/roshanpiu/seneruTest/master/sampleXsds/MISMOBarrower.xsd').then(function(data) {
 
@@ -160,10 +166,6 @@ angular.module('starter', ['ionic', 'cb.x2js','starter.directives','angular-json
         }
 
         var convertedJson = x2js.xml_str2json(data.data);
-
-        
-
-        console.log(convertedJson);
 
         function processJSON(data) {
             var res = {};
@@ -195,12 +197,10 @@ angular.module('starter', ['ionic', 'cb.x2js','starter.directives','angular-json
                 // } 
 
             }
-
             return res;
         }
-        console.log(processJSON(convertedJson));
-        //console.log(convertedJson);
-        //removeValues(convertedJson);
+                    console.log(processJSON(convertedJson));
+
         $scope.dtreeContent = processJSON(convertedJson);
     });
 

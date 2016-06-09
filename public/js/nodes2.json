@@ -1,0 +1,32 @@
+{
+    "name": "1",
+    "children": [{
+        "name": "sequence",
+        "children": [{
+            "name": "element",
+            "children": [{
+                "name": "AutomobilesOwnedCount"
+            }, {
+                "name": "BorrowerAgeAtApplicationYearsCount"
+            }, {
+                "name": "BorrowerApplicationSignedDate"
+            }, {
+                "name": "BorrowerBankruptcyIndicator"
+            }, {
+                "name": "BorrowerBirthDate"
+            }, {
+                "name": "BorrowerCharacteristicType"
+            }, {
+                "name": "BorrowerCharacteristicTypeOtherDescription"
+            }, {
+                "name": "BorrowerClassificationType"
+            }, {
+                "name": "BorrowerIsAnIndividualPersonIndicator"
+            }, {
+                "name": "BorrowerMailToAddressSameAsPropertyIndicator"
+            }]
+        }]
+    }, {
+        "name": "BORROWER_DETAIL"
+    }]
+}
