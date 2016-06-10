@@ -159,7 +159,7 @@ angular.module('starter', ['ionic', 'cb.x2js', 'starter.directives', 'angular-js
     $scope.showXsdTree = false;
     $scope.dtreeContent = {};
 
-    $http.get('https://raw.githubusercontent.com/roshanpiu/seneruTest/master/sampleXsds/xmlSchema.xsd').then(function(data) {
+    $http.get('https://raw.githubusercontent.com/roshanpiu/seneruTest/master/sampleXsds/schema.xsd').then(function(data) {
 
         if (data.data) {
             $scope.showXsdTree = true;
